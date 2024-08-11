@@ -16,7 +16,7 @@ class Stock(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     name = Column(String, index=True)
     symbol = Column(String, index=True)
-    owner = relationship("User", back_populates="stocks")
     quantity = Column(Float)
     purchase_price = Column(Float)
     purchase_date = Column(Date)
+    owner = relationship("User", back_populates="stocks")
