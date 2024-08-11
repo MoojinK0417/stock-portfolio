@@ -113,6 +113,7 @@ def search_and_add_stock(symbol: str, quantity: int, db: db_dependency, user: us
         "symbol": symbol,
         "quantity": quantity,
         "purchase_price": f"{purchase_price:.2f}",  # Use regular float here
+        "initial_value": f"{(purchase_price * quantity):.2f}",
         "purchase_date": history.index[-1].date()  # Get the most recent date
     }
 

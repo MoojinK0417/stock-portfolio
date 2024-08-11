@@ -18,5 +18,6 @@ class Stock(Base):
     symbol = Column(String, index=True)
     quantity = Column(Float)
     purchase_price = Column(Float)
+    initial_value = Column(Float)
     purchase_date = Column(Date)
     owner = relationship("User", back_populates="stocks")

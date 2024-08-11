@@ -7,6 +7,7 @@ class StockBase(BaseModel):
     quantity: float
     purchase_price: float
     purchase_date: date
+    initial_value : float
 
 class StockCreate(StockBase):
     pass
