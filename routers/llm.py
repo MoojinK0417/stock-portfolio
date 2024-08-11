@@ -1,6 +1,6 @@
 import openai
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, HTTPException
 from sqlalchemy.orm import Session
 from ..deps import db_dependency, user_dependency
 from ..models import Stock
