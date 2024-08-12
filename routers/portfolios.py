@@ -14,14 +14,6 @@ router = APIRouter(
     tags=['portfolios']
 )
 
-@router.post("/", response_model=StockSchema, status_code=status.HTTP_201_CREATED)
-def create_stock(stock: StockCreate, db: db_dependency, user: user_dependency):
-    db_stock = StockModel(**stock.model_dump(), user_id=user.get('id')) 
-    db.add(db_stock)
-    db.commit()
-    db.refresh(db_stock)
-    return db_stock 
-
 @router.get("/", response_model=List[StockSchema])
 def get_stocks(db: db_dependency, user: user_dependency):
     stocks = db.query(StockModel).filter(StockModel.user_id == user.get('id')).all() 
@@ -105,19 +97,17 @@ def search_and_add_stock(symbol: str, quantity: int, db: db_dependency, user: us
     if history.empty:
         raise HTTPException(status_code=404, detail="No price data available for this symbol.")
 
-    purchase_price = float(history.iloc[-1]['Close'])  # Convert to regular float
+    purchase_price = float(history.iloc[-1]['Close']) 
     
-    # Prepare stock data to fit into the StockModel
     stock_data = {
         "name": stock_info.get("shortName", symbol),
         "symbol": symbol,
         "quantity": quantity,
-        "purchase_price": f"{purchase_price:.2f}",  # Use regular float here
+        "purchase_price": f"{purchase_price:.2f}", 
         "initial_value": f"{(purchase_price * quantity):.2f}",
-        "purchase_date": history.index[-1].date()  # Get the most recent date
+        "purchase_date": history.index[-1].date()  
     }
 
-    # Insert the stock data into the database
     db_stock = StockModel(**stock_data, user_id=user.get('id'))
     db.add(db_stock)
     db.commit()
