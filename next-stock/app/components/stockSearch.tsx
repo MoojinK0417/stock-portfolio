@@ -41,20 +41,32 @@ export default function StockSearch() {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        value={symbol}
-        onChange={(e) => setSymbol(e.target.value)}
-        placeholder="Enter stock symbol"
-      />
-      <button onClick={handleSearch}>Search</button>
+    <div className="flex flex-col items-end min-h-screen p-8">
+      <div className="w-full flex justify-end mt-16">
+        <div className="flex w-full max-w-md ml-auto">
+          <input
+            type="text"
+            value={symbol}
+            onChange={(e) => setSymbol(e.target.value)}
+            placeholder="Enter stock symbol"
+            className="flex-1 p-2 rounded border border-gray-300 rounded-r-md mr-2"
+          />
+          <button
+            onClick={handleSearch}
+            className="p-2 text-white rounded-r-md btn btn-outline btn-primary"
+          >
+            Search
+          </button>
+        </div>
+      </div>
 
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {stockData && (
-        <div>
-          <CandlestickChart symbol={stockData.symbol} />
+        <div className="w-full flex justify-center mt-8">
+          <div className="w-full max-w-8xl p-4 bg-white rounded shadow-md">
+            <CandlestickChart symbol={stockData.symbol} />
+          </div>
         </div>
       )}
     </div>

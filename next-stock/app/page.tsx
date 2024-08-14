@@ -1,8 +1,11 @@
 import StockSearch from "./components/stockSearch";
+import Navigation from "./components/navigation";
 export default function Home() {
   return (
     <div>
-      <h1>Main Page</h1>
+      <div>
+        <Navigation />
+      </div>
       <div>
         <StockSearch />
       </div>

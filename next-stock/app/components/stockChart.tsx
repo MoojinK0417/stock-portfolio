@@ -70,7 +70,8 @@ export default function CandlestickChart({ symbol }: CandlestickChartProps) {
   const options: ApexOptions = {
     chart: {
       type: "candlestick",
-      height: 350,
+      height: 500,
+      width: "100%",
     },
     title: {
       text: `${symbol} Stock Price`,
@@ -95,7 +96,8 @@ export default function CandlestickChart({ symbol }: CandlestickChartProps) {
         options={options}
         series={series}
         type="candlestick"
-        height={350}
+        height={500}
+        width="100%"
       />
       <div>
         {stockData && (

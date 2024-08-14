@@ -15,7 +15,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
 };
 export default config;
 
@@ -42,7 +42,7 @@ module.exports = {
       },
     },
   },
-  plugins: [addVariablesForColors],
+  plugins: [addVariablesForColors, require('daisyui')],
 };
 
 function addVariablesForColors({ addBase, theme }: any) {
