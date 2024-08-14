@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer
 
 from .database import Base, engine
-from .routers import portfolios, llm, auth
+from .routers import portfolios, llm, auth, stocks
  
 
 app = FastAPI()
@@ -25,7 +25,6 @@ def health_check():
     return 'Health check complete'
 
 app.include_router(auth.router)
-# app.include_router(users.router)
+app.include_router(stocks.router)
 app.include_router(portfolios.router)
-# app.include_router(market.router)
 app.include_router(llm.router)
