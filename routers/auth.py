@@ -26,6 +26,7 @@ class UserCreateReqeust(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str
+    user_id: int
 
 def authenticate_user(username: str, password: str, db):
     user = db.query(User).filter(User.username == username).first()
@@ -56,6 +57,6 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
     user = authenticate_user(form_data.username, form_data.password, db)
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Could not validate user")
-    token = create_access_token(user.username, user.id, timedelta(minutes=20))
+    token = create_access_token(user.username, user.id, timedelta(minutes=100))
 
-    return {'access_token': token, 'token_type': 'bearer'}
+    return {'access_token': token, 'token_type': 'bearer', 'user_id': user.id}

@@ -62,7 +62,7 @@ export default function CandlestickChart({ symbol }: CandlestickChartProps) {
 
     fetchStockData(); // Fetch initially
 
-    const interval = setInterval(fetchStockData, 5000); // Fetch every 10 seconds
+    const interval = setInterval(fetchStockData, 15000); // Fetch every 15 seconds
 
     return () => clearInterval(interval); // Cleanup on component unmount
   }, [symbol]);

@@ -2,7 +2,7 @@
 
 import React, { createContext, useState, useContext, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { isTokenExpired } from "@/lib/utils";
+
 interface AuthContextType {
   token: string | null;
   setToken: (token: string | null) => void;
@@ -22,10 +22,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       setToken(savedToken);
     }
   }, []);
-
-  if (!token || isTokenExpired(token)) {
-    router.push("/login");
-  }
 
   return (
     <AuthContext.Provider value={{ token, setToken }}>

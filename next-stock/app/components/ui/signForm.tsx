@@ -45,6 +45,7 @@ export default function SignForm() {
     if (response.ok) {
       const data = await response.json();
       localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("user_id", data.user_id);
       setToken(data.access_token);
       router.push("/");
     } else {

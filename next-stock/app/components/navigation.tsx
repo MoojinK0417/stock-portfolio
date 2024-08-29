@@ -3,7 +3,7 @@ import Logout from "./logout";
 
 export default function Navigation() {
   return (
-    <div className="navbar fixed mx-auto border border-[#444753] mr-1 ml-1 top-1 left-0 right-0 z-50 bg-transparent bg-opacity-100 rounded-badge ">
+    <div className="navbar fixed mx-auto shadow-lg mr-1 ml-1 top-1 left-0 right-0 z-50 bg-transparent bg-opacity-100 rounded-badge ">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">SPM</a>
       </div>
